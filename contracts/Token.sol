@@ -117,7 +117,7 @@ contract Token is IERC20, IMintableToken, IDividends {
   function recordDividend() external payable override { 
       require(msg.value!=0);
       for (uint256 i = 0; i <holderList.length; i++){
-        dividend[holderList[i]]+=msg.value*balanceOf[holderList[i]]/totalSupply; //use math library!!
+        dividend[holderList[i]]+=msg.value.mul(balanceOf[holderList[i]].div(totalSupply));
       }
     //revert();
   }
